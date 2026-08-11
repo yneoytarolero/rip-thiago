@@ -52,7 +52,7 @@ body{
     height:20px;
 }
 
-/* Intro */
+/* INTRO */
 
 #intro{
     position:fixed;
@@ -81,8 +81,13 @@ body{
 }
 
 @keyframes pulse{
-    0%,100%{transform:scale(1);}
-    50%{transform:scale(1.05);}
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.05);
+    }
 }
 
 @keyframes hideIntro{
@@ -92,14 +97,13 @@ body{
     }
 }
 
-/* Contenido */
+/* CONTENIDO */
 
 .container{
     max-width:1200px;
     margin:auto;
     padding:80px 20px;
-    
-    /* CATÁLOGO */
+
     display:grid;
     grid-template-columns:repeat(3, 1fr);
     gap:25px;
@@ -123,12 +127,24 @@ body{
     transform:translateY(0);
 }
 
+/* FOTOS */
+
 .case img{
     width:100%;
     height:250px;
     object-fit:cover;
     display:block;
+
+    cursor:pointer;
+    transition:.3s;
 }
+
+.case img:hover{
+    transform:scale(1.03);
+    filter:brightness(1.15);
+}
+
+/* TEXTO */
 
 .case-content{
     padding:20px;
@@ -144,15 +160,91 @@ body{
     line-height:1.6;
 }
 
-/* RESPONSIVE */
+/* VISOR DE IMAGEN */
 
-@media (max-width:900px){
-    .container{
-        grid-template-columns:repeat(2, 1fr);
+#imageModal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.92);
+
+    z-index:20000;
+
+    justify-content:center;
+    align-items:center;
+
+    padding:30px;
+
+    cursor:pointer;
+}
+
+#imageModal.active{
+    display:flex;
+}
+
+#modalImage{
+    max-width:95%;
+    max-height:90vh;
+
+    object-fit:contain;
+
+    border-radius:12px;
+
+    box-shadow:
+        0 0 40px rgba(255,0,0,.25);
+
+    cursor:default;
+
+    animation:zoomImage .25s ease;
+}
+
+@keyframes zoomImage{
+    from{
+        opacity:0;
+        transform:scale(.85);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
     }
 }
 
+/* BOTÓN CERRAR */
+
+#closeModal{
+    position:absolute;
+    top:20px;
+    right:30px;
+
+    color:white;
+    font-size:45px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    z-index:20001;
+
+    transition:.2s;
+}
+
+#closeModal:hover{
+    color:#ff3030;
+    transform:scale(1.1);
+}
+
+/* RESPONSIVE */
+
+@media (max-width:900px){
+
+    .container{
+        grid-template-columns:repeat(2, 1fr);
+    }
+
+}
+
 @media (max-width:600px){
+
     .container{
         grid-template-columns:1fr;
         padding:70px 15px;
@@ -166,125 +258,256 @@ body{
         font-size:45px;
         text-align:center;
     }
+
+    #contador{
+        top:10px;
+        right:10px;
+        transform:scale(.9);
+        transform-origin:top right;
+    }
+
+    #modalImage{
+        max-width:100%;
+        max-height:85vh;
+    }
+
+    #closeModal{
+        top:10px;
+        right:20px;
+        font-size:40px;
+    }
 }
+
 </style>
 </head>
 
 <body>
 
 <!-- CONTADOR -->
+
 <div id="contador">
     <span>👁️</span>
-    <img src="https://visitor-badge.laobi.icu/badge?page_id=yneoytarolero.rip-thiago&left_text=Views&right_color=8b0000" alt="Visitas">
+
+    <img
+        src="https://visitor-badge.laobi.icu/badge?page_id=yneoytarolero.rip-thiago&left_text=Views&right_color=8b0000"
+        alt="Visitas"
+    >
 </div>
 
+
+<!-- INTRO -->
+
 <div id="intro">
-    <h1>EL CASO<br>yLrxy / Thiago</h1>
+
+    <h1>
+        EL CASO<br>
+        yLrxy / Thiago
+    </h1>
+
     <p>Cargando capturas...</p>
+
 </div>
+
+
+<!-- CATÁLOGO -->
 
 <div class="container">
 
-<div class="case">
-<img src="img/1.jpg">
-<div class="case-content">
-<h2>Captura #1</h2>
-<p>Promocionando cheats CON RAT.</p>
-</div>
+    <div class="case">
+        <img src="img/1.jpg" alt="Captura 1">
+        <div class="case-content">
+            <h2>Captura #1</h2>
+            <p>Promocionando cheats CON RAT.</p>
+        </div>
+    </div>
+
+
+    <div class="case">
+        <img src="img/2.jpg" alt="Captura 2">
+        <div class="case-content">
+            <h2>Captura #2</h2>
+            <p>Rogando para volver a ratear.</p>
+        </div>
+    </div>
+
+
+    <div class="case">
+        <img src="img/3.jpg" alt="Captura 3">
+        <div class="case-content">
+            <h2>Captura #3</h2>
+            <p>Rateando a un pobre individuo.</p>
+        </div>
+    </div>
+
+
+    <div class="case">
+        <img src="img/4.jpg" alt="Captura 4">
+        <div class="case-content">
+            <h2>Captura #4</h2>
+            <p>¿Quemó su propio DC?</p>
+        </div>
+    </div>
+
+
+    <div class="case">
+        <img src="img/5.jpg" alt="Captura 5">
+        <div class="case-content">
+            <h2>Captura #5</h2>
+            <p>Está por hacer una RAT chat.</p>
+        </div>
+    </div>
+
+
+    <div class="case">
+        <img src="img/6.jpg" alt="Captura 6">
+        <div class="case-content">
+            <h2>Captura #6</h2>
+            <p>Está por ratear a 2 bro...</p>
+        </div>
+    </div>
+
+
+    <div class="case">
+        <img src="img/7.jpg" alt="Captura 7">
+        <div class="case-content">
+            <h2>Captura #7</h2>
+            <p>Rateando a uno.</p>
+        </div>
+    </div>
+
+
+    <div class="case">
+        <img src="img/8.jpg" alt="Captura 8">
+        <div class="case-content">
+            <h2>Captura #8</h2>
+            <p>Pasándoles RATs a otro.</p>
+        </div>
+    </div>
+
+
+    <div class="case">
+        <img src="img/9.jpg" alt="Captura 9">
+        <div class="case-content">
+            <h2>Captura #9</h2>
+            <p>Usando a alguien para que lo ayude a ratear.</p>
+        </div>
+    </div>
+
+
+    <div class="case">
+        <img src="img/10.jpg" alt="Captura 10">
+        <div class="case-content">
+            <h2>Captura #10</h2>
+            <p>TODAS SUS CUENTAS DE DISCORD.</p>
+        </div>
+    </div>
+
 </div>
 
-<div class="case">
-<img src="img/2.jpg">
-<div class="case-content">
-<h2>Captura #2</h2>
-<p>Rogando para volver a ratear .</p>
-</div>
-</div>
 
-<div class="case">
-<img src="img/3.jpg">
-<div class="case-content">
-<h2>Captura #3</h2>
-<p>Rateando a un pobre individuo.</p>
-</div>
-</div>
+<!-- VISOR DE IMAGEN -->
 
-<div class="case">
-<img src="img/4.jpg">
-<div class="case-content">
-<h2>Captura #4</h2>
-<p>Quemo su propio dc?</p>
-</div>
-</div>
+<div id="imageModal">
 
-<div class="case">
-<img src="img/5.jpg">
-<div class="case-content">
-<h2>Captura #5</h2>
-<p>Esta por hacer una rat chat !!!</p>
-</div>
-</div>
+    <span id="closeModal">&times;</span>
 
-<div class="case">
-<img src="img/6.jpg">
-<div class="case-content">
-<h2>Captura #6</h2>
-<p>Esta por ratear a 2 bro...</p>
-</div>
-</div>
-
-<div class="case">
-<img src="img/7.jpg">
-<div class="case-content">
-<h2>Captura #7</h2>
-<p>Rateando a uno.</p>
-</div>
-</div>
-
-<div class="case">
-<img src="img/8.jpg">
-<div class="case-content">
-<h2>Captura #8</h2>
-<p>Pasandoles rats a otro.</p>
-</div>
-</div>
-
-<div class="case">
-<img src="img/9.jpg">
-<div class="case-content">
-<h2>Captura #9</h2>
-<p>Usando a alguien para que lo ayude a ratear.</p>
-</div>
-</div>
-
-<div class="case">
-<img src="img/10.jpg">
-<div class="case-content">
-<h2>Captura #10</h2>
-<p>TODAS SUS CUENTAS DE DISCORD</p>
-</div>
-</div>
+    <img id="modalImage" src="" alt="Imagen ampliada">
 
 </div>
+
 
 <script>
 
-const observer = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
+/* ANIMACIÓN DE LAS TARJETAS */
+
+const observer = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
         if(entry.isIntersecting){
             entry.target.classList.add("show");
         }
+
     });
+
 },{
     threshold:.2
 });
 
-document.querySelectorAll(".case").forEach(card=>{
+
+document.querySelectorAll(".case").forEach(card => {
     observer.observe(card);
+});
+
+
+/* ABRIR IMAGEN */
+
+const modal = document.getElementById("imageModal");
+const modalImage = document.getElementById("modalImage");
+const closeModal = document.getElementById("closeModal");
+
+
+document.querySelectorAll(".case img").forEach(image => {
+
+    image.addEventListener("click", function(){
+
+        modalImage.src = this.src;
+
+        modal.classList.add("active");
+
+        document.body.style.overflow = "hidden";
+
+    });
+
+});
+
+
+/* CERRAR CON X */
+
+closeModal.addEventListener("click", function(){
+
+    modal.classList.remove("active");
+
+    document.body.style.overflow = "";
+
+});
+
+
+/* CERRAR TOCANDO AFUERA */
+
+modal.addEventListener("click", function(event){
+
+    if(event.target === modal){
+
+        modal.classList.remove("active");
+
+        document.body.style.overflow = "";
+
+    }
+
+});
+
+
+/* CERRAR CON ESC */
+
+document.addEventListener("keydown", function(event){
+
+    if(event.key === "Escape"){
+
+        modal.classList.remove("active");
+
+        document.body.style.overflow = "";
+
+    }
+
 });
 
 </script>
 
 </body>
 </html>
-discord.gg/WrtS3vVsTp
+```
+
+Con esto **no tenés que cambiar las rutas**: `img/1.jpg`, `img/2.jpg`, etc. siguen funcionando igual.
+
+Y ojo: en el código que pegaste había algunas cosas raras como `\*`, `\#` y el enlace del contador convertido a Markdown. En el código de arriba ya están **limpias y corregidas**.
