@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -94,13 +95,18 @@ body{
 /* Contenido */
 
 .container{
-    max-width:900px;
+    max-width:1200px;
     margin:auto;
     padding:80px 20px;
+    
+    /* CATÁLOGO */
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:25px;
 }
 
 .case{
-    margin-bottom:90px;
+    margin-bottom:0;
     background:#111;
     border:1px solid #222;
     border-radius:18px;
@@ -108,7 +114,7 @@ body{
     box-shadow:0 0 25px rgba(255,0,0,.08);
 
     opacity:0;
-    transform:translateY(80px);
+    transform:translateY(40px);
     transition:1s;
 }
 
@@ -119,24 +125,51 @@ body{
 
 .case img{
     width:100%;
+    height:250px;
+    object-fit:cover;
     display:block;
 }
 
 .case-content{
-    padding:25px;
+    padding:20px;
 }
 
 .case-content h2{
     color:#ff4040;
-    margin-bottom:15px;
+    margin-bottom:10px;
 }
 
 .case-content p{
     color:#ddd;
-    line-height:1.7;
+    line-height:1.6;
+}
+
+/* RESPONSIVE */
+
+@media (max-width:900px){
+    .container{
+        grid-template-columns:repeat(2, 1fr);
+    }
+}
+
+@media (max-width:600px){
+    .container{
+        grid-template-columns:1fr;
+        padding:70px 15px;
+    }
+
+    .case img{
+        height:auto;
+    }
+
+    #intro h1{
+        font-size:45px;
+        text-align:center;
+    }
 }
 </style>
 </head>
+
 <body>
 
 <!-- CONTADOR -->
@@ -254,3 +287,4 @@ document.querySelectorAll(".case").forEach(card=>{
 
 </body>
 </html>
+```
